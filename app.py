@@ -36,23 +36,23 @@ def roster_update():
     }
     roster.update_one(
         {'_id': ObjectId(character_id)},
-        {'$set': updated_item})
-    return redirect(url_for('roster_show', item_id=item_id))
+        {'$set': updated_character})
+    return redirect(url_for('roster_show', character_id=character_id))
     )
 
-@app.route('/stock/new')
-def stock_new():
-    """Create a new item."""
-    return render_template('stock_new.html', item = {}, title = 'New Item')
+@app.route('/roster/new')
+def roster_new():
+    """Create a new character."""
+    return render_template('roster_new.html', character = {}, title = 'New Character')
 
-@app.route('/stock/<item_id>/edit')
-def stock_edit(item_id):
-    """Show the edit form for a item."""
-    item = stock.find_one({'_id': ObjectId(item_id)})
-    return render_template('stock_edit.html', item=item, title = 'Edit Item')
+@app.route('/roster/<Character_id>/edit')
+def roster_edit(character_id):
+    """Show the edit form for a character."""
+    character = roster.find_one({'_id': ObjectId(character_id)})
+    return render_template('roster_edit.html', character=character, title = 'Edit Character')
 
-@app.route('/stock/<item_id>/delete', methods=['POST'])
-def stock_delete(item_id):
-    """Delete one item."""
-    stock.delete_one({'_id': ObjectId(item_id)})
-    return redirect(url_for('stock_index'))
+@app.route('/roster/<character_id>/delete', methods=['POST'])
+def roster_delete(character_id):
+    """Delete one character."""
+    roster.delete_one({'_id': ObjectId(character_id)})
+    return redirect(url_for('roster_index'))
