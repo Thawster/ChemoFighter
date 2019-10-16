@@ -19,3 +19,20 @@ def main_menu():
 @app.route('/roster', methods=['POST'])
 def roster_submit():
     """submit a new Character"""
+
+@app.route('/stock/<item_id>/delete', methods=['POST'])
+def stock_delete(item_id):
+    """Delete one item."""
+    stock.delete_one({'_id': ObjectId(item_id)})
+    return redirect(url_for('stock_index'))
+
+@app.route('/stock/new')
+def stock_new():
+    """Create a new item."""
+    return render_template('stock_new.html', item = {}, title = 'New Item')
+
+@app.route('/stock/<item_id>/edit')
+def stock_edit(item_id):
+    """Show the edit form for a item."""
+    item = stock.find_one({'_id': ObjectId(item_id)})
+    return render_template('stock_edit.html', item=item, title = 'Edit Item')
