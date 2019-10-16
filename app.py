@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import objectId
 import os
+from character import Character, Ability, Armor
 
 host = os.environment.get('MONGODB_URI', 'mongodb://localhost:27017/ChemoFighter')
 client = MongoClient(host=host)
@@ -18,4 +19,3 @@ def main_menu():
 @app.route('/roster', methods=['POST'])
 def roster_submit():
     """submit a new Character"""
-    
