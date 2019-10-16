@@ -33,9 +33,6 @@ class Team:
     def revive_heroes(self, health=100):
         for hero in self.heroes:
             self.current_health = health
-    def stats(self):
-        for hero in self.heroes:
-            print(f"{hero.name} has {hero.kills} kills and has died {hero.deaths} times.")
 
 class Arena:
     def __init__(self):
