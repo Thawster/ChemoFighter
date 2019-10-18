@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
-from character import Character, Ability, Armor
-from arena import Team, Arena
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/ChemoFighter')
 client = MongoClient(host=host)
@@ -22,7 +20,9 @@ def roster_submit():
     """submit a new Character"""
     character = {
         'name': request.form.get('name'),
-        'starting health': request.form.get('starting health')
+        'starting health': request.form.get('starting health'),
+        'power level': request.form.get('power level'),
+        'defence': request.form.get('defence')
     }
     roster.insert_one(character)
     return redirect(url_for('main_menu'))

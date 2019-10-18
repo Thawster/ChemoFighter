@@ -1,34 +1,35 @@
 from character import Character
+from app import roster
 
 class Team:
     def __init__(self, name):
         self.name = name
-        self.heroes = []
-    def add_hero(self, hero):
-        self.heroes.append(hero)
-    def remove_hero(self, name):
+        self.roster = roster
+    def add_character(self, character):
+        self.roster.append(character)
+    def remove_character(self, name):
         try:
-            self.heroes.pop(name)
+            self.roster.pop(name)
         except:
             return 0
-    def view_all_heroes(self):
+    def view_all_characters(self):
         index = 0
         for list_item in checklist:
             print(str(index) + " " + list_item)
             index += 1
     def attack(self, other_team):
-        if len(other_team.heroes) > 0:
-            for opponent in other_team.heroes:
-                current_villian = other_team.heroes[random.randint(0, len(other_team.heroes)-1)]
+        if len(other_team.roster) > 0:
+            for opponent in other_team.roster:
+                current_opponent = other_team.roster[random.randint(0, len(other_team.roster)-1)]
         else:
-            print("heroes win!")
+            print("You Win!")
             pass
-        if len(self.heroes) > 0:
-            for hero in self.heroes:
-                current_hero = self.heroes[random.randint(0, len(self.heroes)-1)]
-                current_hero.fight(current_villian)
+        if len(self.roster) > 0:
+            for character in self.roster:
+                current_character = self.roster[random.randint(0, len(self.roster)-1)]
+                current_character.fight(current_opponent)
         else:
-            print("Villians win!")
+            print("You Lose!")
             pass
     def revive_heroes(self, health=100):
         for hero in self.heroes:

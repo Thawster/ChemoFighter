@@ -1,21 +1,31 @@
 <!-- templates/partials/roster_form.html -->
 
 <fieldset>
-        <legend>{{ title }}</legend>
-        <!-- Name -->
-        <div class='form-group'>
-            <label for='Character-name'>Name</label><br>
-            <input class='form-control' id='character-name' type='text' name='name' value='{{ character.name }}'/>
-        </div>
+    <legend>{{ title }}</legend>
+    <!-- Name -->
+    <div class='form-group'>
+        <label for='Character-name'>Name</label><br>
+        <input class='form-control' id='character-name' type='text' name='name' value='{{ character.name }}'/>
+    </div>
         
-        <!-- Health -->
-        <div class='form-group'>
-            <label for='character-health'>Health</label><br>
-            <input class='form-control' id='health' type='text' name='health' value='{{ character.health }}' />
-        </div>
-        </fieldset>
+    <!-- Health -->
+    <div class='form-group'>
+        <label for='character-health'>Health</label><br>
+        <input class='form-control' id='health' type='text' name='health' value='{{ character.health }}' />
+    </div>
+    <!-- Power Level -->
+    <div class='form-group'>
+        <label for='character-power'>Power Level</label><br>
+        <input class='form-control' id='power' type='text' name='power' value='{{ character.power }}' />
+    </div>
+    <!-- Health -->
+    <div class='form-group'>
+        <label for='character-defence'>Defence</label><br>
+        <input class='form-control' id='defence' type='text' name='defence' value='{{ character.defence }}' />
+    </div>
+    </fieldset>
         
-        <!-- BUTTON -->
-        <p>
-            <button type='submit'>Save Character</button>
-        </p>
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save Character</button>
+    </p>
