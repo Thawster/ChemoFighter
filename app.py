@@ -62,10 +62,21 @@ def roster_delete(character_id):
     roster.delete_one({'_id': ObjectId(character_id)})
     return redirect(url_for('main_menu'))
 
-@app.route('/fight')
-def start():
-    """Start a Fight Match"""
-    return render_template('fight.html', roster = roster)
+@app.route('/team', methods=['POST'])
+def team_submit():
+    """Submit a team."""
+    
+    return redirect(url_for('stock_index'))
+
+@app.route('/team/select')
+def team_select():
+    """Choose team size"""
+    return render_template('team_select.html')
+
+@app.route('/team/choose')
+def team_choose():
+    """Choose team characters"""
+    return render_template('team_choose.html', roster=roster, one=one, two=two)
 
 if __name__ == '__main__':
     #app.run(debug=True)
