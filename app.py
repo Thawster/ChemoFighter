@@ -50,11 +50,22 @@ def roster_edit(character_id):
     character = roster.find_one({'_id': ObjectId(character_id)})
     return render_template('roster_edit.html', character=character, title = 'Edit Character')
 
+@app.route('/roster/<character_id>')
+def roster_show(character_id):
+    """Show a single character."""
+    character = roster.find_one({'_id': ObjectId(character_id)})
+    return render_template('roster_show.html', character=character)
+
 @app.route('/roster/<character_id>/delete', methods=['POST'])
 def roster_delete(character_id):
     """Delete one character."""
     roster.delete_one({'_id': ObjectId(character_id)})
-    return redirect(url_for('roster_index'))
+    return redirect(url_for('main_menu'))
+
+@app.route('/fight')
+def start():
+    """Start a Fight Match"""
+    return render_template('fight.html', roster = roster)
 
 if __name__ == '__main__':
     #app.run(debug=True)

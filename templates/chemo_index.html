@@ -2,16 +2,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Main Menu</h1>
+<h1>Chemo Fighter</h1>
 
-<div class='row'>
-    {% for character in roster %}
-        <div class='col-md-3'>
-            <h2><a href='/roster/{{ character._id }}'>{{ character.name }}</a></h2>
-        </div>
-    {% endfor %}
-</div>
-<div class='pull-right'>
+<div class='coloum'>
+    <a href='/fight' class='btn btn-default navbar-btn'>Start Fight</a>
     <a href='/roster/new' class='btn btn-default navbar-btn'>New Character</a>
 </div>
 {% endblock %}
