@@ -3,18 +3,34 @@
 <fieldset>
         <legend>{{ title }}</legend>
         <!-- Team One -->
-        <div class='form-group'>
-            <label for='Team-One'>Size of team 1?</label><br>
-            <input class='form-control' id='team-one' type='text' name='one' value='{{ one }}'/>
-        </div>
-        <!-- Team Two -->
-        <div class='form-group'>
-            <label for='Team-Two'>Size of team 2?</label><br>
-            <input class='form-control' id='character-name' type='text' name='two' value='{{ two }}'/>
-        </div>
+        <select id='dropdown1' name = "dropdown1">
+            {% for character in roster %}
+                <option value = '{{ character._id }}' selected> {{ character.name }}</option>
+            {% endfor %}
+        </select>
+        <select id='dropdown2' name = "dropdown2">
+            {% for character in roster %}
+                <option value = '{{ character._id }}' selected> {{ character.name }}</option>
+            {% endfor %}
+        </select>
 </fieldset>
 
-<!-- BUTTON -->
-<p>
-        <a href='/team/choose' class='btn btn-default navbar-btn'>Next</a>
-</p>
+<fieldset>
+        <legend>{{ title }}</legend>
+        <!-- Team Two -->
+        <select id='dropdown4' name = "dropdown4">
+            {% for character in roster %}
+                <option value = '{{ character._id }}4' selected> {{ character.name }}</option>
+            {% endfor %}
+        </select>
+        <select id='dropdown5' name = "dropdown5">
+            {% for character in roster %}
+                <option value = '{{ character._id }}5' selected> {{ character.name }}</option>
+            {% endfor %}
+        </select>
+        <select nid='dropdown6' name = "dropdown6">
+            {% for character in roster %}
+                <option value = '{{ character._id }}6' selected> {{ character.name }}</option>
+            {% endfor %}
+        </select>
+</fieldset>

@@ -20,19 +20,21 @@ def roster_submit():
     """submit a new Character"""
     character = {
         'name': request.form.get('name'),
-        'starting health': request.form.get('starting health'),
-        'power level': request.form.get('power level'),
+        'health': request.form.get('health'),
+        'power': request.form.get('power'),
         'defence': request.form.get('defence')
     }
     roster.insert_one(character)
     return redirect(url_for('main_menu'))
 
 @app.route('/roster/<character_id>', methods=['POST'])
-def roster_update():
+def roster_update(character_id):
     """submit a edited Character"""
     updated_character = {
         'name': request.form.get('name'),
-        'starting health': request.form.get('starting health')
+        'health': request.form.get('health'),
+        'power': request.form.get('power'),
+        'defence': request.form.get('defence')
     }
     roster.update_one(
         {'_id': ObjectId(character_id)},
@@ -44,7 +46,7 @@ def roster_new():
     """Create a new character."""
     return render_template('roster_new.html', character = {}, title = 'New Character')
 
-@app.route('/roster/<Character_id>/edit')
+@app.route('/roster/<character_id>/edit')
 def roster_edit(character_id):
     """Show the edit form for a character."""
     character = roster.find_one({'_id': ObjectId(character_id)})
@@ -71,12 +73,12 @@ def team_submit():
 @app.route('/team/select')
 def team_select():
     """Choose team size"""
-    return render_template('team_select.html')
+    return render_template('team_select.html', roster=roster.find())
 
 @app.route('/team/choose')
 def team_choose():
     """Choose team characters"""
-    return render_template('team_choose.html', roster=roster, one=one, two=two)
+    return render_template('team_choose.html', roster=roster)
 
 if __name__ == '__main__':
     #app.run(debug=True)

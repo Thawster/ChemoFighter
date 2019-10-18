@@ -31,8 +31,8 @@ class Team:
         else:
             print("You Lose!")
             pass
-    def revive_heroes(self, health=100):
-        for hero in self.heroes:
+    def revive_characters(self, health=100):
+        for character in self.roster:
             self.current_health = health
 
 class Arena:
@@ -43,44 +43,40 @@ class Arena:
         ability_name = input("What will you name your ability: ")
         ability_strength = input("What is the power level: ")
         return Ability(ability_name, ability_strength)
-    def create_weapon(self):
-        weapon_name = input("What will you name your weapon: ")
-        weapon_strength = input("What is the strength: ")
-        return Weapon(weapon_name, weapon_strength)
     def create_armor(self):
         armor_name = input("What will you name your armor: ")
         armor_strength = input("What is the defense: ")
         return Armor(armor_name, armor_strength)
 
-    def create_hero(self):
-        hero_name = input("What will you name your character: ")
-        hero = Hero(hero_name)
-        is_ability = input("Do they have an ability? (y/n) ")
-        while is_ability != "n":
-            if is_ability == "y":
-                hero.add_ability(self.create_ability())
-            else:
-                print("please type y/n")
-            is_ability = input("Do they have another ability? (y/n) ")
-        is_weapon = input("Do they have a weapon? (y/n) ")
-        while is_weapon != "n":
-            if is_weapon == "y":
-                hero.add_weapon(self.create_weapon())
-            else:
-                print("please type y/n")
-            is_weapon = input("Do they have another weapon? (y/n) ")
-        is_armor = input("Do they have an armor? (y/n) ")
-        while is_armor != "n":
-            if is_armor == "y":
-                hero.add_armor(self.create_armor())
-            else:
-                print("please type y/n")
-            is_armor = input("Do they have another armor? (y/n) ")
-        return hero 
+    #def create_character(self):
+    #    character_name = input("What will you name your character: ")
+    #    character = Character(character_name)
+    #    is_ability = input("Do they have an ability? (y/n) ")
+    #    while is_ability != "n":
+    #        if is_ability == "y":
+    #            hero.add_ability(self.create_ability())
+    #        else:
+    #            print("please type y/n")
+    #        is_ability = input("Do they have another ability? (y/n) ")
+        # is_weapon = input("Do they have a weapon? (y/n) ")
+        # while is_weapon != "n":
+        #     if is_weapon == "y":
+        #         hero.add_weapon(self.create_weapon())
+        #     else:
+        #         print("please type y/n")
+        #     is_weapon = input("Do they have another weapon? (y/n) ")
+        # is_armor = input("Do they have an armor? (y/n) ")
+        # while is_armor != "n":
+        #     if is_armor == "y":
+        #         hero.add_armor(self.create_armor())
+        #     else:
+        #         print("please type y/n")
+        #     is_armor = input("Do they have another armor? (y/n) ")
+        # return hero 
     def build_team_one(self):
         size = False
         while size == False:
-            team_one_size = input("How many heroes on team one?")
+            team_one_size = input("How many characters on team one?")
             try:
                 team_one_size = int(team_one_size)
                 size = True

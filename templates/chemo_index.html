@@ -8,4 +8,12 @@
     <a href='/team/select' class='btn btn-default navbar-btn'>Start Fight</a>
     <a href='/roster/new' class='btn btn-default navbar-btn'>New Character</a>
 </div>
+
+<div class='row'>
+    {% for character in roster %}
+        <div class='col-md-3'>
+            <h2><a href='/roster/{{ character._id }}'>{{ character.name }}</a></h2>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
