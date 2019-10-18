@@ -1,0 +1,21 @@
+<!-- templates/partials/roster_form.html -->
+
+<fieldset>
+        <legend>{{ title }}</legend>
+        <!-- Name -->
+        <div class='form-group'>
+            <label for='Character-name'>Name</label><br>
+            <input class='form-control' id='character-name' type='text' name='name' value='{{ character.name }}'/>
+        </div>
+        
+        <!-- Health -->
+        <div class='form-group'>
+            <label for='character-health'>Health</label><br>
+            <input class='form-control' id='health' type='text' name='health' value='{{ character.health }}' />
+        </div>
+        </fieldset>
+        
+        <!-- BUTTON -->
+        <p>
+            <button type='submit'>Save Character</button>
+        </p>

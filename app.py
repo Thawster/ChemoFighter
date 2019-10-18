@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
-from bson.objectid import objectId
+from bson.objectid import ObjectId
 import os
 from character import Character, Ability, Armor
 from arena import Team, Arena
 
-host = os.environment.get('MONGODB_URI', 'mongodb://localhost:27017/ChemoFighter')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/ChemoFighter')
 client = MongoClient(host=host)
 db = client.get_default_database()
 roster = db.roster
@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route('/')
 def main_menu():
     """Home Screen"""
-    return render_template('chemo_index.html' roster=roster)
+    return render_template('chemo_index.html', roster=roster.find())
 
 @app.route('/roster', methods=['POST'])
 def roster_submit():
@@ -25,7 +25,7 @@ def roster_submit():
         'starting health': request.form.get('starting health')
     }
     roster.insert_one(character)
-    return redirect(url_for('chemo_index'))
+    return redirect(url_for('main_menu'))
 
 @app.route('/roster/<character_id>', methods=['POST'])
 def roster_update():
@@ -38,7 +38,6 @@ def roster_update():
         {'_id': ObjectId(character_id)},
         {'$set': updated_character})
     return redirect(url_for('roster_show', character_id=character_id))
-    )
 
 @app.route('/roster/new')
 def roster_new():
@@ -56,3 +55,8 @@ def roster_delete(character_id):
     """Delete one character."""
     roster.delete_one({'_id': ObjectId(character_id)})
     return redirect(url_for('roster_index'))
+
+if __name__ == '__main__':
+    #app.run(debug=True)
+    #If port problem appears
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
